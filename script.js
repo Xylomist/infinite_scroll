@@ -6,12 +6,12 @@ let imagecontainer=document.querySelector(".imgcontainer")
 let loaderdiv=document.querySelector(".loading")
 let loader=false
 async function getphotos(){
+    loader=false;
 try{
 loaderdiv.style.display="none";
 let result=await fetch(apiUrl);
 let response=await result.json();
 images=response;
-loader=true;
 displayonscreen(images);
     }
     catch(error){
@@ -31,6 +31,7 @@ function displayonscreen(arr){
     fragment.append(a);
        });
 imagecontainer.append(fragment);
+    loader=true;
 }
 getphotos();
 window.addEventListener("scroll",()=>{
